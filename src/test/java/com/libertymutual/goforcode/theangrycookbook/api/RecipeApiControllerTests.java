@@ -84,24 +84,17 @@ public class RecipeApiControllerTests {
 	@Test
 	public void test_delete_returns_recipe_deleted_when_found() {
 		//arrange
-		Recipe recipe = new Recipe();
-		ArrayList<Ingredient> ingredient = new ArrayList<Ingredient>();
-		ingredient.add(new Ingredient());
-		ArrayList<Instruction> instruction = new ArrayList<Instruction>();
-		instruction.add(new Instruction());
-		recipe.setIngredients(ingredient);
-		recipe.setInstructions(instruction);
-
-		when(recipeRepo.findOne(2L)).thenReturn(recipe);
+		Recipe recipe = new Recipe(); 
+		when(recipeRepo.findOne(2L)).thenReturn(recipe); 
 		
 		//act
-		Recipe actual = controller.delete(2L); 		
+		Recipe actual = controller.delete(2L); 
 		
 		//assert
 		assertThat(recipe).isSameAs(actual); 
 		verify(recipeRepo).delete(2L);
 		verify(recipeRepo).findOne(2L); 
-	}
+		}
 	
 	@Test
 	public void test_recipe_is_created_when_create_is_called() {
