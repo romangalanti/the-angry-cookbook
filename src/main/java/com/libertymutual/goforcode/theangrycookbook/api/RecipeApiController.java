@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.libertymutual.goforcode.theangrycookbook.models.Ingredient;
+import com.libertymutual.goforcode.theangrycookbook.models.Instruction;
 import com.libertymutual.goforcode.theangrycookbook.models.Recipe;
 import com.libertymutual.goforcode.theangrycookbook.repositories.IngredientRepository;
 import com.libertymutual.goforcode.theangrycookbook.repositories.InstructionRepository;
@@ -73,6 +75,50 @@ public class RecipeApiController {
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
 		recipe.setId(id);
 		return recipeRepo.save(recipe);
+	}
+	
+	@ApiOperation(value = "Create a new ingredient for the specified recipe.")
+	@PostMapping("{id}/ingredients")
+	public Recipe createAnIngredient(@PathVariable long id, @RequestBody Ingredient ingredient) {
+		Ingredient newIngredient = new Ingredient(ingredient.getNameOfFoodItem(), ingredient.getUnitOfMeasurement(), ingredient.getQuantity());
+		Recipe recipe = recipeRepo.findOne(id);
+		newIngredient.setRecipe(recipe);
+		ingredientRepo.save(newIngredient);
+		return recipe;
+	}
+	
+	@ApiOperation(value = "Create a new instruction for the specified recipe.")
+	@PostMapping("{id}/instructions")
+	public Recipe createAnInstruction(@PathVariable long id, @RequestBody Instruction instruction) {
+		Instruction newInstruction = new Instruction(instruction.getInstruction());
+		Recipe recipe = recipeRepo.findOne(id);
+		newInstruction.setRecipe(recipe);
+		instructionRepo.save(newInstruction);
+		return recipe;
+	}
+	
+	@ApiOperation(value = "Delete the specified ingredient.")
+	@DeleteMapping("{id}/ingredients/{ing_id}")
+	public Recipe deleteIngredient(@PathVariable long id, @PathVariable long ing_id) {
+		try {
+			Recipe recipe = recipeRepo.findOne(id);
+			ingredientRepo.delete(ing_id);
+			return recipe;
+		} catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
+	}
+	
+	@ApiOperation(value = "Delete the specified instruction.")
+	@DeleteMapping("{id}/instructions/{ins_id}")
+	public Recipe deleteInstruction(@PathVariable long id, @PathVariable long ins_id) {
+		try {
+			Recipe recipe = recipeRepo.findOne(id);
+			instructionRepo.delete(ins_id);
+			return recipe;
+		} catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
 	}
 
 }
