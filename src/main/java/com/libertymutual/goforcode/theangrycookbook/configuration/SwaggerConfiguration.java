@@ -16,7 +16,7 @@ public class SwaggerConfiguration {
 	public Docket apiConfig() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.libertymutual.goforcode.the-angry-cookbook"))
+				.apis(RequestHandlerSelectors.basePackage("com.libertymutual.goforcode.theangrycookbook"))
 				.build();
 	}
 
