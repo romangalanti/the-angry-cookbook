@@ -63,6 +63,8 @@ public class RecipeApiController {
 	public Recipe delete(@PathVariable long id) {
 		try {
 			Recipe recipe = recipeRepo.findOne(id);
+			recipe.getIngredients().get(0);
+			recipe.getInstructions().get(0);
 			recipeRepo.delete(id);
 			return recipe;
 		} catch (EmptyResultDataAccessException erdae) {
