@@ -32,9 +32,6 @@ public class Recipe {
 	@Column(nullable=false)
 	private double numberOfMinutes;
 	
-	@Column(nullable=false)
-	private double unitOfMeasurement;
-	
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
 	private List<Instruction> instructions;
 	
@@ -43,11 +40,10 @@ public class Recipe {
 	
 	public Recipe() {}
 	
-	public Recipe(String title, String description, double numberOfMinutes, double unitOfMeasurement) {
+	public Recipe(String title, String description, double numberOfMinutes) {
 		this.title = title;
 		this.description = description;
 		this.numberOfMinutes = numberOfMinutes;
-		this.unitOfMeasurement = unitOfMeasurement;
 	}
 
 	public Long getId() {
@@ -80,14 +76,6 @@ public class Recipe {
 
 	public void setNumberOfMinutes(double numberOfMinutes) {
 		this.numberOfMinutes = numberOfMinutes;
-	}
-
-	public double getUnitOfMeasurement() {
-		return unitOfMeasurement;
-	}
-
-	public void setUnitOfMeasurement(double unitOfMeasurement) {
-		this.unitOfMeasurement = unitOfMeasurement;
 	}
 
 	public List<Instruction> getInstructions() {
