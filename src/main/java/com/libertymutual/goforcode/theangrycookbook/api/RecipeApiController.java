@@ -22,7 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping("/recipes")
 @Api(description="Use this to get and create recipes, and add ingredients and instructions to recipes.")
 public class RecipeApiController {
 	
