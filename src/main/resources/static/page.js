@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:8080/recipe';
+const baseurl = 'http://localhost:8080/recipes';
 
 $(document).on('click', 'a[data-recipe-id]', function (e) {
 	e.preventDefault();
