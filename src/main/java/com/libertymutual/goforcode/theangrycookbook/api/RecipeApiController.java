@@ -120,5 +120,25 @@ public class RecipeApiController {
 			return null;
 		}
 	}
+	
+	@ApiOperation(value = "Update the name of food item, unit of measurement, and quantity for an ingredient in a recipe.")
+	@PutMapping("{id}/ingredients/{ing_id}")
+	public Recipe updateIngredient(@PathVariable long id, @PathVariable long ing_id, @RequestBody Ingredient ingredient) {
+		Recipe recipe = recipeRepo.findOne(id);
+		ingredient.setRecipe(recipe);
+		ingredient.setId(ing_id);
+		ingredientRepo.save(ingredient);
+		return recipe;
+	}
+	
+	@ApiOperation(value = "Update the instruction for a recipe.")
+	@PutMapping("{id}/instructions/{ins_id}")
+	public Recipe updateInstruction(@PathVariable long id, @PathVariable long ins_id, @RequestBody Instruction instruction) {
+		Recipe recipe = recipeRepo.findOne(id);
+		instruction.setRecipe(recipe);
+		instruction.setId(ins_id);
+		instructionRepo.save(instruction);
+		return recipe;
+	}
 
 }

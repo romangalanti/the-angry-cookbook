@@ -239,6 +239,40 @@ public class RecipeApiControllerTests {
 		
 	}
 	
+	@Test
+	public void test_ingredient_is_updated() {
+		//arrange
+		Recipe recipe = new Recipe();
+		Ingredient ingredient = new Ingredient();
+		when(recipeRepo.findOne(1L)).thenReturn(recipe);
+		when(ingredientRepo.findOne(2L)).thenReturn(ingredient);
+		
+		//act
+		Recipe actual = controller.updateIngredient(1L, 2L, ingredient);
+		
+		//assert
+		assertThat(recipe).isEqualTo(actual);
+		verify(recipeRepo).findOne(1L);
+		verify(ingredientRepo).save(ingredient);
+	}
+	
+	@Test
+	public void test_instruction_is_updated() {
+		//arrange
+		Recipe recipe = new Recipe();
+		Instruction instruction = new Instruction();
+		when(recipeRepo.findOne(1L)).thenReturn(recipe);
+		when(instructionRepo.findOne(2L)).thenReturn(instruction);
+		
+		//act
+		Recipe actual = controller.updateInstruction(1L, 2L, instruction);
+		
+		//assert
+		assertThat(recipe).isEqualTo(actual);
+		verify(recipeRepo).findOne(1L);
+		verify(instructionRepo).save(instruction);
+	}
+	
 }
 
 
