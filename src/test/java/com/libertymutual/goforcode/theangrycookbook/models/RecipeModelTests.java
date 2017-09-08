@@ -10,6 +10,18 @@ public class RecipeModelTests {
 	@Test
 	public void test_full_argument_constructor() {
 		// Act
+		Recipe recipe = new Recipe("Will", "Ferrell", 1, "urlhere");
+
+		// Assert
+		assertThat(recipe.getTitle()).isEqualTo("Will");
+		assertThat(recipe.getDescription()).isEqualTo("Ferrell");
+		assertThat(recipe.getNumberOfMinutes()).isEqualTo(1);
+		assertThat(recipe.getUrl()).isEqualTo("urlhere");
+	}
+	
+	@Test
+	public void test_required_argument_constructor() {
+		// Act
 		Recipe recipe = new Recipe("Will", "Ferrell", 1);
 
 		// Assert

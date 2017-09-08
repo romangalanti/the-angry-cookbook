@@ -23,6 +23,9 @@ public class Instruction {
 	@Column(nullable=false, length=500)
 	private String instruction;
 	
+	@Column(nullable=true, length=255)
+	private String url;
+	
 	@ManyToOne
 	private Recipe recipe;
 	
@@ -30,6 +33,11 @@ public class Instruction {
 	
 	public Instruction(String instruction) {
 		this.instruction = instruction;
+	}
+	
+	public Instruction(String instruction, String url) {
+		this.instruction = instruction;
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -54,6 +62,14 @@ public class Instruction {
 
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

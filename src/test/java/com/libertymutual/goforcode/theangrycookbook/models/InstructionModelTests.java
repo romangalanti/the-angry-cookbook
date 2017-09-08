@@ -10,6 +10,16 @@ public class InstructionModelTests {
 	@Test
 	public void test_full_argument_constructor() {
 		// Act
+		Instruction instruction = new Instruction("Will", "urlhere");
+
+		// Assert
+		assertThat(instruction.getInstruction()).isEqualTo("Will");
+		assertThat(instruction.getUrl()).isEqualTo("urlhere");
+	}
+	
+	@Test
+	public void test_required_argument_constructor() {
+		// Act
 		Instruction instruction = new Instruction("Will");
 
 		// Assert
