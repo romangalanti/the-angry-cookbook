@@ -1,5 +1,18 @@
 const baseurl = 'http://localhost:8080/recipes';
 
+function createListElement(recipe) {
+	$('<li></li>')
+	.html(`
+		<a href="#" data-recipe-id="${recipe.id}">
+			${recipe.title}
+		</a>
+		<form method="post" action="/recipes/${recipe.id}">
+			<button>Delete</button>
+		</form>
+	`)
+	.appendTo($('#recipe-list'));
+}
+
 $('#create-recipe-form').on('submit', function (e) {
 	e.preventDefault();
 	
@@ -18,13 +31,9 @@ $('#create-recipe-form').on('submit', function (e) {
 	
 	$.ajax(this.action, ajaxOptions)
 		.done(function (recipe) {
-			$('<li></li>')
-			.html('<a href="#" data-recipe-id="' + recipe.id + '">' + recipe.title + '</a>')
-			.appendTo($('#recipe-list'));
+			createListElement(recipe);
 		})
-		.fail(function (error) {
-			console.log(error);
-		});
+		.fail(error => console.error(error));
 });
 
 $(document).on('click', 'a[data-recipe-id]', function (e) {
@@ -38,7 +47,7 @@ $(document).on('click', 'a[data-recipe-id]', function (e) {
 					<h1>Title: ${data.title}</h1>
 					<h2>Description: ${data.description}</h2>
 					<div>Number of Minutes: ${data.numberOfMinutes}</div>
-					<div>Picture Url: ${data.url}</div>
+					<img src=${data.url}>
 			`);
 	}) 
 });
@@ -47,9 +56,7 @@ $(document).on('click', 'a[data-recipe-id]', function (e) {
 $.getJSON(baseurl, function (data) {
 	if (data.length) {
 		for (let recipe of data) {
-			$('<li></li>')
-				.html('<a href="#" data-recipe-id="' + recipe.id + '">' + recipe.title + '</a>')
-				.appendTo($('#recipe-list'));
+			createListElement(recipe);
 		}
 	} else {
 		$('<li></li>')
