@@ -5,15 +5,15 @@
 </head>
 <body>
 	<h1>The Angry Cookbook</h1>
-	<form method="post" action="/recipes">
-		<input required type="text" name="title" placeholder="Title">
+	<form id="create-recipe-form" method="post" action="/recipes">
+		<input required type="text" id="title" name="title" placeholder="Title">
 		<br>
-		<textarea name="description" placeholder="Description">
+		<textarea id="description" name="description" placeholder="Description">
 		</textarea>
 		<br>
-		<input required type="number" name="numberOfMinutes" placeholder="Number of Minutes">
+		<input required type="number" id="numberOfMinutes" name="numberOfMinutes" placeholder="Number of Minutes" min=0>
 		<br>
-		<input type="url" name="url" placeholder="Url">
+		<input type="url" id="url" name="url" placeholder="Picture Url">
 		<br>
 		<button type="submit">Create Cookbook Entry</button>
 	</form>
