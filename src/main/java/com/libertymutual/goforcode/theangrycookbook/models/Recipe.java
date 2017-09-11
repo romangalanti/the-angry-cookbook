@@ -32,8 +32,8 @@ public class Recipe {
 	@Column(nullable=false)
 	private double numberOfMinutes;
 	
-	@Column(nullable=false)
-	private double unitOfMeasurement;
+	@Column(nullable=true, length = 255)
+	private String url;
 	
 	@OneToMany(mappedBy="recipe", cascade=CascadeType.ALL)
 	private List<Instruction> instructions;
@@ -43,11 +43,17 @@ public class Recipe {
 	
 	public Recipe() {}
 	
-	public Recipe(String title, String description, double numberOfMinutes, double unitOfMeasurement) {
+	public Recipe(String title, String description, double numberOfMinutes) {
 		this.title = title;
 		this.description = description;
 		this.numberOfMinutes = numberOfMinutes;
-		this.unitOfMeasurement = unitOfMeasurement;
+	}
+	
+	public Recipe(String title, String description, double numberOfMinutes, String url) {
+		this.title = title;
+		this.description = description;
+		this.numberOfMinutes = numberOfMinutes;
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -82,14 +88,6 @@ public class Recipe {
 		this.numberOfMinutes = numberOfMinutes;
 	}
 
-	public double getUnitOfMeasurement() {
-		return unitOfMeasurement;
-	}
-
-	public void setUnitOfMeasurement(double unitOfMeasurement) {
-		this.unitOfMeasurement = unitOfMeasurement;
-	}
-
 	public List<Instruction> getInstructions() {
 		return instructions;
 	}
@@ -104,6 +102,14 @@ public class Recipe {
 
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

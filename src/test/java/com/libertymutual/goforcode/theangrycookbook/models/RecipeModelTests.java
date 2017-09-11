@@ -8,15 +8,26 @@ import org.meanbean.test.BeanTester;
 public class RecipeModelTests {
 	
 	@Test
-	public void test_full_argument_constructor() {
+	public void test_required_argument_constructor() {
 		// Act
-		Recipe recipe = new Recipe("Will", "Ferrell", 1, 2);
+		Recipe recipe = new Recipe("Will", "Ferrell", 1);
 
 		// Assert
 		assertThat(recipe.getTitle()).isEqualTo("Will");
 		assertThat(recipe.getDescription()).isEqualTo("Ferrell");
 		assertThat(recipe.getNumberOfMinutes()).isEqualTo(1);
-		assertThat(recipe.getUnitOfMeasurement()).isEqualTo(2);
+	}
+	
+	@Test
+	public void test_full_argument_constructor() {
+		// Act
+		Recipe recipe = new Recipe("Will", "Ferrell", 1, "the");
+
+		// Assert
+		assertThat(recipe.getTitle()).isEqualTo("Will");
+		assertThat(recipe.getDescription()).isEqualTo("Ferrell");
+		assertThat(recipe.getNumberOfMinutes()).isEqualTo(1);
+		assertThat(recipe.getUrl()).isEqualTo("the");
 	}
 	
 	@Test

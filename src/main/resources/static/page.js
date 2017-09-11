@@ -11,7 +11,6 @@ $(document).on('click', 'a[data-recipe-id]', function (e) {
 					<h1>Title: ${data.title}</h1>
 					<h2>Description: ${data.description}</h2>
 					<div>Number of Minutes: ${data.numberOfMinutes}</div>
-					<div>Unit of Measurement: ${data.unitOfMeasurement}</div>
 			`);
 	}) 
 });

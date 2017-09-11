@@ -4,6 +4,19 @@
  	<title>Simple Front-End</title>
 </head>
 <body>
+	<h1>The Angry Cookbook</h1>
+	<form method="post" action="/recipes">
+		<input required type="text" name="title" placeholder="Title">
+		<br>
+		<textarea name="description" placeholder="Description">
+		</textarea>
+		<br>
+		<input required type="number" name="numberOfMinutes" placeholder="Number of Minutes">
+		<br>
+		<input type="url" name="url" placeholder="Url">
+		<br>
+		<button type="submit">Create Cookbook Entry</button>
+	</form>
 	<ul id="recipe-list"></ul>
 	<div id="recipe-detail"></div>
 	<script

@@ -8,12 +8,22 @@ import org.meanbean.test.BeanTester;
 public class InstructionModelTests {
 	
 	@Test
-	public void test_full_argument_constructor() {
+	public void test_required_argument_constructor() {
 		// Act
 		Instruction instruction = new Instruction("Will");
 
 		// Assert
 		assertThat(instruction.getInstruction()).isEqualTo("Will");
+	}
+	
+	@Test
+	public void test_full_argument_constructor() {
+		// Act
+		Instruction instruction = new Instruction("Will", "Ferrell");
+
+		// Assert
+		assertThat(instruction.getInstruction()).isEqualTo("Will");
+		assertThat(instruction.getUrl()).isEqualTo("Ferrell");
 	}
 	
 	@Test
