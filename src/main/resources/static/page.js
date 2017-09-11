@@ -6,12 +6,24 @@ function createListElement(recipe) {
 		<a href="#" data-recipe-id="${recipe.id}">
 			${recipe.title}
 		</a>
-		<form method="post" action="/recipes/${recipe.id}">
+		<form class="delete-recipe-form" method="post" action="/recipes/${recipe.id}">
 			<button>Delete</button>
 		</form>
 	`)
 	.appendTo($('#recipe-list'));
 }
+
+$(document).on('submit', '.delete-recipe-form', function (e) {
+	e.preventDefault();
+	
+	$.ajax(this.action, { type: 'DELETE' })
+		.done(() => {
+			$(this)
+				.closest('li')
+				.remove();
+		})
+		.fail(error => console.error(error));
+});
 
 $('#create-recipe-form').on('submit', function (e) {
 	e.preventDefault();
