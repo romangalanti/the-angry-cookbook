@@ -71,7 +71,7 @@ public class RecipeApiControllerTests {
 	
 	
 	@Test
-	public void test_getOne_throws_StuffNotFoundException_when_no_movie_returned_from_repo() {
+	public void test_getOne_throws_StuffNotFoundException_when_no_recipe_returned_from_repo() {
 		try {
 			controller.getOne(4L); 
 			fail("The controller did not throw the StuffNotFoundException."); 
